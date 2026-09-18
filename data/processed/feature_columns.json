@@ -1,0 +1,32 @@
+{
+  "numeric": [
+    "secondary_price_per_sqft_usd",
+    "secondary_price_per_m2_usd",
+    "offplan_price_per_sqft_usd",
+    "n_listings_secondary",
+    "n_listings_offplan",
+    "n_listings_rental",
+    "cbuae_base_rate_pct",
+    "avg_mortgage_rate_pct",
+    "year",
+    "month_sin",
+    "month_cos",
+    "t_index",
+    "rent_lag_1",
+    "rent_lag_3",
+    "rent_lag_12",
+    "rent_roll_mean_3",
+    "rent_roll_mean_12",
+    "price_to_rent_ratio_lag1",
+    "offplan_secondary_price_gap",
+    "total_listings",
+    "rental_activity_share"
+  ],
+  "categorical": [
+    "community_key",
+    "zone",
+    "is_freehold"
+  ],
+  "target": "rental_price_per_sqft_annual_usd",
+  "test_start": "2025-01"
+}

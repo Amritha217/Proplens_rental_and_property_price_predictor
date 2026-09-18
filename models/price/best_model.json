@@ -1,0 +1,17 @@
+{
+  "best_model": "xgboost",
+  "metrics": {
+    "r2": 0.8358,
+    "mae": 317459.0,
+    "rmse": 708426.0,
+    "mape": 16.5
+  },
+  "tier_edges": [
+    69630.0,
+    731888.0,
+    1450000.0,
+    60808800.0
+  ],
+  "worst_tier_mape": 17.91,
+  "needs_segmentation": false
+}

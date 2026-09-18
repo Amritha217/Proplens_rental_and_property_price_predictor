@@ -1,0 +1,23 @@
+{
+  "numeric": [
+    "area_sqm",
+    "bedrooms",
+    "has_parking",
+    "near_landmark",
+    "near_mall",
+    "near_metro",
+    "is_offplan",
+    "year",
+    "month_sin",
+    "month_cos",
+    "t_index"
+  ],
+  "onehot_categorical": [
+    "property_sub_type"
+  ],
+  "target_encode_categorical": [
+    "area_name"
+  ],
+  "target": "price",
+  "base_year": 2003
+}

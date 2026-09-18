@@ -1,0 +1,35 @@
+# Data (large, and often has licensing/privacy considerations -- don't commit raw DLD exports)
+data/raw/*.csv
+data/processed/*.csv
+data/processed_price/*.csv
+
+# Trained models (large binary files, regenerate via train.py instead of committing)
+models/*.pkl
+models/*.cbm
+models/price/*.pkl
+models/price/*.cbm
+
+# Python environment
+venv/
+__pycache__/
+*.pyc
+.Python
+*.egg-info/
+
+# Environment variables / secrets
+.env
+
+# OS/editor cruft
+.DS_Store
+.vscode/
+.ipynb_checkpoints/
+
+# Keep folder structure even though contents are ignored
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+!data/processed_price/.gitkeep
+!models/.gitkeep
+!models/price/.gitkeep
+
+
+notebooks/

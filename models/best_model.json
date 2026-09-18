@@ -1,0 +1,8 @@
+{
+  "best_model": "random_forest",
+  "metrics": {
+    "r2": 0.9998,
+    "mae": 0.062,
+    "mape": 0.09
+  }
+}
