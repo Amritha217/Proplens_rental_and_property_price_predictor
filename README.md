@@ -11,7 +11,7 @@ frontend.
 ![Rent Prediction tab](screenshots/rent_tab.png)
 ![Yield & Investment Score tab](screenshots/yield_tab.png)
 ![Property Price Prediction tab](screenshots/property_tab.png)
--->
+
 
 ## Structure
 
@@ -97,28 +97,4 @@ streamlit run frontend/app.py
 | `POST /yield-score` | gross/net yield, ROI, investment score |
 | `POST /predict-price` | sale price + SHAP drivers + confidence |
 
-## Test samples (one per tab, in the Streamlit app)
 
-**Tab 1 — Rent Prediction**
-- Community: `Dubai Marina`, Size: `1000` sqft → expect ~$44/sqft/year, ~$44,000/year
-
-**Tab 2 — Yield & Investment Score**
-- Community: `Dubai Marina`, Size: `1000` sqft, Price: `AED 2,500,000` (≈$681K),
-  defaults for holding period/costs → expect gross yield ~6.4%, net yield ~5.0%,
-  confidence "high"
-- Try `Emirates Hills` at a proportionally higher price (~AED 4,500,000 for
-  1000 sqft) to see a materially different investment score, confirming the
-  score actually discriminates between communities
-
-**Tab 3 — Property Price Prediction**
-- Area: `Al Wasl`, Size: `90` sqm, Bedrooms: `2`, Year: `2026`, Month: `6`
-  → expect ~AED 2.2M, confidence "high", SHAP drivers led by area/time-trend
-- Try an area with little history (if shown in the dropdown as available but
-  thin) to confirm a "low" confidence warning appears in the UI, not just the API
-
-## Honest caveats for resume/interview use
-
-Rent module's resume claim should say "listing/panel data," not DLD — only
-the price module is genuine DLD transaction data. Neither module has
-building/floor/view-level features. Investment score weights are tuned to
-this dataset's specific (flat-yield) characteristics.
