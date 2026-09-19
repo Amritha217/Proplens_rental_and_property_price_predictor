@@ -8,7 +8,7 @@ frontend.
 ## Screenshots
 
 
-![Rent Prediction tab](screenshots/rent+tab.png)
+![Rent Prediction tab](screenshots/rent_tab.png)
 ![Yield & Investment Score tab](screenshots/yield_tab.png)
 ![Property Price Prediction tab](screenshots/property_tab.png)
 -->
