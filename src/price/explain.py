@@ -60,11 +60,15 @@ class PriceExplainer:
         # the baseline shouldn't change prediction to prediction).
         train = pd.read_csv(os.path.join(data_dir, "train.csv")).dropna(subset=self.feature_cols_raw_needed())
         train["area_target_enc"] = train["area_name"].map(self.area_enc["map"]).fillna(self.area_enc["global_mean"])
+        # Background sample kept for reference/reuse, but TreeExplainer uses
+        # tree_path_dependent perturbation below, which doesn't need it --
+        # this also sidesteps a known SHAP/XGBoost incompatibility with the
+        # default "interventional" mode when features come through a
+        # OneHotEncoder pipeline (fails with "Categorical split is not yet
+        # supported" on some XGBoost + SHAP version combos).
         background = train[self.feature_cols].sample(min(background_size, len(train)), random_state=42)
-        background_transformed = self.preprocessor.transform(background)
 
-        # TreeExplainer is fast and exact for tree models (LightGBM/RF/XGBoost/CatBoost)
-        self.explainer = shap.TreeExplainer(self.core_model, background_transformed)
+        self.explainer = shap.TreeExplainer(self.core_model, feature_perturbation="tree_path_dependent")
         self.transformed_feature_names = self._get_transformed_feature_names()
 
     def feature_cols_raw_needed(self):

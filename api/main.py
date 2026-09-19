@@ -169,6 +169,14 @@ def yield_score(req: YieldRequest):
     return result.__dict__
 
 
+@app.get("/price-areas")
+def list_price_areas():
+    if _price_explainer is None:
+        raise HTTPException(503, "Price model not loaded.")
+    areas = sorted(_price_explainer.area_stats.keys())
+    return {"areas": areas, "count": len(areas)}
+
+
 @app.post("/predict-price")
 def predict_price(req: PricePredictRequest):
     if _price_explainer is None:

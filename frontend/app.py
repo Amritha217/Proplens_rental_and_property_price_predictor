@@ -52,6 +52,20 @@ def get_communities():
 communities = get_communities()
 community_names = sorted({c["community"] for c in communities}) if communities else []
 
+
+@st.cache_data(ttl=300)
+def get_price_areas():
+    try:
+        resp = requests.get(f"{API_BASE}/price-areas", timeout=5)
+        resp.raise_for_status()
+        return resp.json()["areas"]
+    except Exception as e:
+        st.error(f"Could not load price areas from API: {e}")
+        return []
+
+
+price_areas = get_price_areas()
+
 with tab1:
     st.subheader("Predict rent per sqft for a community")
     if community_names:
@@ -131,7 +145,10 @@ with tab3:
 
     col1, col2 = st.columns(2)
     with col1:
-        price_area = st.text_input("Area name", value="Al Wasl", key="price_area")
+        if price_areas:
+            price_area = st.selectbox("Area name", price_areas, key="price_area")
+        else:
+            price_area = st.text_input("Area name", value="Al Wasl", key="price_area_txt")
         sub_type = st.selectbox("Property sub-type", ["Flat", "Villa", "Townhouse"], key="price_subtype")
         area_sqm = st.number_input("Size (sqm)", min_value=15.0, max_value=1500.0, value=90.0, step=5.0)
         bedrooms = st.number_input("Bedrooms (0 = studio)", min_value=0, max_value=10, value=2)
